@@ -1,0 +1,137 @@
+﻿using System;
+using System.Diagnostics;
+using System.Linq;
+using System.Reflection;
+using System.Windows.Forms;
+using FibonacciDemo.Properties;
+
+namespace FibonacciDemo
+{
+  public partial class FormMain : Form
+  {
+    public FormMain()
+    {
+      InitializeComponent();
+    }
+
+    Int64[] FiboList = new long[100];
+    private int compteurFiboList = 0;
+
+    private Int64 Fibonacci(Int64 number)
+    {
+      if (number <= 2)
+      {
+        return 1;
+      }
+
+      return Fibonacci(number - 1) + Fibonacci(number - 2);
+    }
+
+    private Int64 GetFibonacci(Int64 number)
+    {
+      if (FiboList.Contains(number))
+      {
+        return FiboList[number];
+      }
+
+      compteurFiboList++;
+      FiboList[compteurFiboList] = Fibonacci(number);
+      return FiboList[compteurFiboList];
+    }
+
+    private void buttonCalculate_Click(object sender, EventArgs e)
+    {
+      const int mini = 1;
+      const int maxi = 47;
+      progressBar1.Minimum = mini;
+      progressBar1.Maximum = maxi;
+      Stopwatch chrono = new Stopwatch();
+      progressBar1.Value = progressBar1.Minimum;
+      listBox1.Items.Clear();
+      chrono.Start();
+      for (Int64 i = mini; i < maxi; i++)
+      {
+        listBox1.Items.Add(i + " = " + Fibonacci(i));
+        Application.DoEvents();
+        progressBar1.Value = (int)i;
+      }
+
+      chrono.Stop();
+      label1.Text = "Duration is: \n" + ToHourMinuteSecond(chrono.ElapsedMilliseconds);
+
+      progressBar1.Value = progressBar1.Minimum;
+    }
+
+    private void Form1_Load(object sender, EventArgs e)
+    {
+      GetWindowValue();
+      DisplayTitle();
+      label1.Text = "duration recursive :";
+      label2.Text = "duration with memory :";
+    }
+
+    private void CalculateWithMemoryClick(object sender, EventArgs e)
+    {
+      const int mini = 1;
+      const int maxi = 47;
+      progressBar1.Minimum = mini;
+      progressBar1.Maximum = maxi;
+      Stopwatch chrono = new Stopwatch();
+      progressBar1.Value = progressBar1.Minimum;
+      listBox2.Items.Clear();
+      chrono.Start();
+      for (Int64 i = mini; i < maxi; i++)
+      {
+        listBox2.Items.Add(i + " = " + GetFibonacci(i));
+        Application.DoEvents();
+        progressBar1.Value = (int)i;
+      }
+
+      chrono.Stop();
+      label2.Text = "Duration is: \n" + ToHourMinuteSecond(chrono.ElapsedMilliseconds);
+
+      progressBar1.Value = progressBar1.Minimum;
+    }
+
+    private void SaveWindowValue()
+    {
+      Settings.Default.WindowHeight = Height;
+      Settings.Default.WindowWidth = Width;
+      Settings.Default.WindowLeft = Left;
+      Settings.Default.WindowTop = Top;
+      Settings.Default.Save();
+    }
+
+    private void GetWindowValue()
+    {
+      Width = Settings.Default.WindowWidth;
+      Height = Settings.Default.WindowHeight;
+      Top = Settings.Default.WindowTop < 0 ? 0 : Settings.Default.WindowTop;
+      Left = Settings.Default.WindowLeft < 0 ? 0 : Settings.Default.WindowLeft;
+    }
+
+    private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
+    {
+      SaveWindowValue();
+    }
+
+    private void DisplayTitle()
+    {
+      Assembly assembly = Assembly.GetExecutingAssembly();
+      FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
+      Text += string.Format(" V{0}.{1}.{2}.{3}", fvi.FileMajorPart, fvi.FileMinorPart, fvi.FileBuildPart, fvi.FilePrivatePart);
+    }
+
+    private static string ToHourMinuteSecond(long millisecs)
+    {
+      TimeSpan t = TimeSpan.FromSeconds(millisecs);
+
+      string result = string.Format("{0:D2}h:{1:D2}m:{2:D2}s:{3:D3}ms",
+                     t.Hours,
+                     t.Minutes,
+                     t.Seconds,
+                     t.Milliseconds);
+      return result;
+    }
+  }
+}

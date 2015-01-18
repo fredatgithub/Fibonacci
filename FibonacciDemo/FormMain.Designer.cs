@@ -1,6 +1,6 @@
 ﻿namespace FibonacciDemo
 {
-  partial class Form1
+  partial class FormMain
   {
     /// <summary>
     /// Variable nécessaire au concepteur.
@@ -33,6 +33,8 @@
       this.progressBar1 = new System.Windows.Forms.ProgressBar();
       this.label1 = new System.Windows.Forms.Label();
       this.listBox2 = new System.Windows.Forms.ListBox();
+      this.buttonCalculateWithMemory = new System.Windows.Forms.Button();
+      this.label2 = new System.Windows.Forms.Label();
       this.SuspendLayout();
       // 
       // listBox1
@@ -45,11 +47,11 @@
       // 
       // buttonCalculate
       // 
-      this.buttonCalculate.Location = new System.Drawing.Point(370, 75);
+      this.buttonCalculate.Location = new System.Drawing.Point(319, 75);
       this.buttonCalculate.Name = "buttonCalculate";
-      this.buttonCalculate.Size = new System.Drawing.Size(75, 23);
+      this.buttonCalculate.Size = new System.Drawing.Size(126, 23);
       this.buttonCalculate.TabIndex = 1;
-      this.buttonCalculate.Text = "Calculate";
+      this.buttonCalculate.Text = "Calculate Recursive";
       this.buttonCalculate.UseVisualStyleBackColor = true;
       this.buttonCalculate.Click += new System.EventHandler(this.buttonCalculate_Click);
       // 
@@ -64,7 +66,7 @@
       // label1
       // 
       this.label1.AutoSize = true;
-      this.label1.Location = new System.Drawing.Point(77, 23);
+      this.label1.Location = new System.Drawing.Point(32, 45);
       this.label1.Name = "label1";
       this.label1.Size = new System.Drawing.Size(35, 13);
       this.label1.TabIndex = 3;
@@ -78,18 +80,41 @@
       this.listBox2.Size = new System.Drawing.Size(111, 641);
       this.listBox2.TabIndex = 4;
       // 
-      // Form1
+      // buttonCalculateWithMemory
+      // 
+      this.buttonCalculateWithMemory.Location = new System.Drawing.Point(319, 118);
+      this.buttonCalculateWithMemory.Name = "buttonCalculateWithMemory";
+      this.buttonCalculateWithMemory.Size = new System.Drawing.Size(126, 23);
+      this.buttonCalculateWithMemory.TabIndex = 5;
+      this.buttonCalculateWithMemory.Text = "Calculate with memory";
+      this.buttonCalculateWithMemory.UseVisualStyleBackColor = true;
+      this.buttonCalculateWithMemory.Click += new System.EventHandler(this.CalculateWithMemoryClick);
+      // 
+      // label2
+      // 
+      this.label2.AutoSize = true;
+      this.label2.Location = new System.Drawing.Point(181, 45);
+      this.label2.Name = "label2";
+      this.label2.Size = new System.Drawing.Size(35, 13);
+      this.label2.TabIndex = 6;
+      this.label2.Text = "label2";
+      // 
+      // FormMain
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(519, 745);
+      this.Controls.Add(this.label2);
+      this.Controls.Add(this.buttonCalculateWithMemory);
       this.Controls.Add(this.listBox2);
       this.Controls.Add(this.label1);
       this.Controls.Add(this.progressBar1);
       this.Controls.Add(this.buttonCalculate);
       this.Controls.Add(this.listBox1);
-      this.Name = "Form1";
+      this.Name = "FormMain";
       this.Text = "How to calculate a Fibonacci number";
+      this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMain_FormClosing);
+      this.Load += new System.EventHandler(this.Form1_Load);
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -102,6 +127,8 @@
     private System.Windows.Forms.ProgressBar progressBar1;
     private System.Windows.Forms.Label label1;
     private System.Windows.Forms.ListBox listBox2;
+    private System.Windows.Forms.Button buttonCalculateWithMemory;
+    private System.Windows.Forms.Label label2;
   }
 }
 
