@@ -29,13 +29,21 @@ namespace FibonacciDemo
 
     private Int64 GetFibonacci(Int64 number)
     {
-      if (FiboList.Contains(number))
+      if (FiboList[number] != 0)
       {
         return FiboList[number];
       }
 
       compteurFiboList++;
-      FiboList[compteurFiboList] = Fibonacci(number);
+      if (compteurFiboList < 3)
+      {
+        FiboList[compteurFiboList] = Fibonacci(number);
+      }
+      else
+      {
+        FiboList[compteurFiboList] = FiboList[compteurFiboList -1] + FiboList[compteurFiboList - 2];
+      }
+      
       return FiboList[compteurFiboList];
     }
 
@@ -132,6 +140,16 @@ namespace FibonacciDemo
                      t.Seconds,
                      t.Milliseconds);
       return result;
+    }
+
+    private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
+    {
+      listBox1.SelectedItem = listBox2.SelectedItem;
+    }
+
+    private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+    {
+      listBox2.SelectedItem = listBox1.SelectedItem;
     }
   }
 }
