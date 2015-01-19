@@ -122,9 +122,9 @@ namespace FibonacciDemo
       Text += string.Format(" V{0}.{1}.{2}.{3}", fvi.FileMajorPart, fvi.FileMinorPart, fvi.FileBuildPart, fvi.FilePrivatePart);
     }
 
-    private static string ToHourMinuteSecond(long millisecs)
+    public static string ToHourMinuteSecond(long millisecs)
     {
-      TimeSpan t = TimeSpan.FromSeconds(millisecs);
+      TimeSpan t = TimeSpan.FromMilliseconds(millisecs);
 
       string result = string.Format("{0:D2}h:{1:D2}m:{2:D2}s:{3:D3}ms",
                      t.Hours,
