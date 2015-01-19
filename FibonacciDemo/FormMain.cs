@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
 using FibonacciDemo.Properties;
@@ -29,13 +28,21 @@ namespace FibonacciDemo
 
     private Int64 GetFibonacci(Int64 number)
     {
-      if (FiboList.Contains(number))
+      if (FiboList[number] != 0)
       {
         return FiboList[number];
       }
 
       compteurFiboList++;
-      FiboList[compteurFiboList] = Fibonacci(number);
+      if (compteurFiboList < 3)
+      {
+        FiboList[compteurFiboList] = Fibonacci(number);
+      }
+      else
+      {
+        FiboList[compteurFiboList] = FiboList[compteurFiboList -1] + FiboList[compteurFiboList - 2];
+      }
+      
       return FiboList[compteurFiboList];
     }
 
@@ -73,7 +80,7 @@ namespace FibonacciDemo
     private void CalculateWithMemoryClick(object sender, EventArgs e)
     {
       const int mini = 1;
-      const int maxi = 47;
+      const int maxi = 93;
       progressBar1.Minimum = mini;
       progressBar1.Maximum = maxi;
       Stopwatch chrono = new Stopwatch();
@@ -122,9 +129,9 @@ namespace FibonacciDemo
       Text += string.Format(" V{0}.{1}.{2}.{3}", fvi.FileMajorPart, fvi.FileMinorPart, fvi.FileBuildPart, fvi.FilePrivatePart);
     }
 
-    private static string ToHourMinuteSecond(long millisecs)
+    public static string ToHourMinuteSecond(long millisecs)
     {
-      TimeSpan t = TimeSpan.FromSeconds(millisecs);
+      TimeSpan t = TimeSpan.FromMilliseconds(millisecs);
 
       string result = string.Format("{0:D2}h:{1:D2}m:{2:D2}s:{3:D3}ms",
                      t.Hours,
@@ -132,6 +139,22 @@ namespace FibonacciDemo
                      t.Seconds,
                      t.Milliseconds);
       return result;
+    }
+
+    private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
+    {
+      if (listBox1.Items.Count > 0)
+      {
+        listBox1.SelectedItem = listBox2.SelectedItem;
+      }
+    }
+
+    private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+    {
+      if (listBox2.Items.Count > 0)
+      {
+        listBox2.SelectedItem = listBox1.SelectedItem;
+      }
     }
   }
 }
