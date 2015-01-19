@@ -50,7 +50,7 @@
       // 
       // buttonCalculate
       // 
-      this.buttonCalculate.Location = new System.Drawing.Point(425, 92);
+      this.buttonCalculate.Location = new System.Drawing.Point(509, 92);
       this.buttonCalculate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
       this.buttonCalculate.Name = "buttonCalculate";
       this.buttonCalculate.Size = new System.Drawing.Size(168, 28);
@@ -85,13 +85,13 @@
       this.listBox2.Location = new System.Drawing.Point(245, 92);
       this.listBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
       this.listBox2.Name = "listBox2";
-      this.listBox2.Size = new System.Drawing.Size(147, 788);
+      this.listBox2.Size = new System.Drawing.Size(256, 788);
       this.listBox2.TabIndex = 4;
       this.listBox2.SelectedIndexChanged += new System.EventHandler(this.listBox2_SelectedIndexChanged);
       // 
       // buttonCalculateWithMemory
       // 
-      this.buttonCalculateWithMemory.Location = new System.Drawing.Point(425, 145);
+      this.buttonCalculateWithMemory.Location = new System.Drawing.Point(509, 145);
       this.buttonCalculateWithMemory.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
       this.buttonCalculateWithMemory.Name = "buttonCalculateWithMemory";
       this.buttonCalculateWithMemory.Size = new System.Drawing.Size(168, 28);
