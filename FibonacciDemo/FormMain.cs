@@ -13,10 +13,10 @@ namespace FibonacciDemo
       InitializeComponent();
     }
 
-    Int64[] FiboList = new long[100];
+    readonly Int64[] _fiboList = new long[100];
     private int _compteurFiboList;
 
-    private Int64 Fibonacci(Int64 number)
+    private static Int64 Fibonacci(Int64 number)
     {
       if (number <= 2)
       {
@@ -28,22 +28,22 @@ namespace FibonacciDemo
 
     private Int64 GetFibonacci(Int64 number)
     {
-      if (FiboList[number] != 0)
+      if (_fiboList[number] != 0)
       {
-        return FiboList[number];
+        return _fiboList[number];
       }
 
       _compteurFiboList++;
       if (_compteurFiboList < 3)
       {
-        FiboList[_compteurFiboList] = Fibonacci(number);
+        _fiboList[_compteurFiboList] = Fibonacci(number);
       }
       else
       {
-        FiboList[_compteurFiboList] = FiboList[_compteurFiboList -1] + FiboList[_compteurFiboList - 2];
+        _fiboList[_compteurFiboList] = _fiboList[_compteurFiboList -1] + _fiboList[_compteurFiboList - 2];
       }
       
-      return FiboList[_compteurFiboList];
+      return _fiboList[_compteurFiboList];
     }
 
     private void buttonCalculate_Click(object sender, EventArgs e)
