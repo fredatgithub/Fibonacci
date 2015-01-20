@@ -14,7 +14,7 @@ namespace FibonacciDemo
     }
 
     Int64[] FiboList = new long[100];
-    private int compteurFiboList = 0;
+    private int _compteurFiboList;
 
     private Int64 Fibonacci(Int64 number)
     {
@@ -33,17 +33,17 @@ namespace FibonacciDemo
         return FiboList[number];
       }
 
-      compteurFiboList++;
-      if (compteurFiboList < 3)
+      _compteurFiboList++;
+      if (_compteurFiboList < 3)
       {
-        FiboList[compteurFiboList] = Fibonacci(number);
+        FiboList[_compteurFiboList] = Fibonacci(number);
       }
       else
       {
-        FiboList[compteurFiboList] = FiboList[compteurFiboList -1] + FiboList[compteurFiboList - 2];
+        FiboList[_compteurFiboList] = FiboList[_compteurFiboList -1] + FiboList[_compteurFiboList - 2];
       }
       
-      return FiboList[compteurFiboList];
+      return FiboList[_compteurFiboList];
     }
 
     private void buttonCalculate_Click(object sender, EventArgs e)
